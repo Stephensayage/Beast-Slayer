@@ -7,6 +7,9 @@ const app = Vue.createApp({
     return {
       playerHealth: 100,
       beastHealth: 100,
+      currentRound: 0,
+      specialCooldown: 0,
+      healCoolDown: 0,
     };
   },
   computed: {
@@ -16,9 +19,22 @@ const app = Vue.createApp({
     playerBarStyles() {
       return { width: this.playerHealth + "%" };
     },
+    useSpecial() {
+      return this.specialCooldown !== 0;
+    },
+    useHeal() {
+      return this.healCoolDown !== 0;
+    },
   },
   methods: {
     attackBeast() {
+      this.currentRound++;
+      if (this.healCoolDown > 0) {
+        this.healCoolDown--;
+      }
+      if (this.specialCooldown > 0) {
+        this.specialCooldown--;
+      }
       const attackValue = getRandomValue(5, 13);
       this.beastHealth -= attackValue;
       this.attackPlayer();
@@ -27,8 +43,19 @@ const app = Vue.createApp({
       const attackValue = getRandomValue(8, 18);
       this.playerHealth -= attackValue;
     },
-    specialAttackBeast() {},
-    healPlayer() {},
+    specialAttackBeast() {
+      this.currentRound++;
+      this.specialCooldown = 3;
+      const attackValue = getRandomValue(10, 22);
+      this.beastHealth -= attackValue;
+      this.attackPlayer();
+    },
+    healPlayer() {
+      this.currentRound++;
+      this.healCoolDown = 2;
+      const healValue = getRandomValue(4, 8);
+      this.playerHealth += healValue;
+    },
   },
 });
 
