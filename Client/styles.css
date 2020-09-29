@@ -13,7 +13,7 @@ body {
 header {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   padding: 0.5rem;
-  background-color: #880017;
+  background-color: #3d405b;
   color: white;
   text-align: center;
   margin-bottom: 2rem;
@@ -34,7 +34,7 @@ section {
 }
 
 .healthbar__value {
-  background-color: #09d397;
+  background-color: #4bb55d;
   width: 100%;
   height: 100%;
 }
@@ -67,8 +67,8 @@ section {
 
 button {
   font: inherit;
-  border: 1px solid #880017;
-  background-color: #880017;
+  border: 1px solid #3d405b;
+  background-color: #3d405b;
   color: white;
   padding: 1rem 2rem;
   border-radius: 12px;
@@ -84,8 +84,8 @@ button:focus {
 
 button:hover,
 button:active {
-  background-color: #cd2f4a;
-  border-color: #880017;
+  background-color: #90143d;
+  border-color: #90143d;
   box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.26);
 }
 
@@ -108,11 +108,11 @@ button:disabled {
 }
 
 .log--player {
-  color: #8a39e8;
+  color: #4a00b1;
 }
 
 .log--monster {
-  color: #feb835;
+  color: #fc5224;
 }
 
 .log--damage {
