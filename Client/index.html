@@ -14,11 +14,12 @@
   </head>
   <body>
     <header>
-      <h1>Beast Slayer</h1>
+      <h1>Beast Slayer 1.0</h1>
     </header>
     <div id="game">
       <section id="monster" class="container">
         <h2>Beast Health</h2>
+        <img :src="getRandomBeast(beastImgs)" class="user-img" />
         <div class="healthbar">
           <div class="healthbar__value" :style="beastBarStyles">
             {{beastHealth}}
@@ -27,6 +28,10 @@
       </section>
       <section id="player" class="container">
         <h2>Your Health</h2>
+        <img
+          src="https://www.flaticon.com/svg/static/icons/svg/2328/2328493.svg"
+          class="user-img"
+        />
         <div class="healthbar">
           <div class="healthbar__value" :style="playerBarStyles">
             {{playerHealth}}
@@ -34,7 +39,7 @@
         </div>
       </section>
       <section class="container" v-if="winner">
-        <h2 v-if="winner === 'beast'">Game Over :{ You have been killed</h2>
+        <h2 v-if="winner === 'beast'">Game Over! You have been killed</h2>
         <h2 v-else-if="winner === 'player'">You have slain the beast!</h2>
         <h2 v-else-if="winner === 'draw'">
           The battle was too close! The beast has escaped.
@@ -51,7 +56,24 @@
       </section>
       <section id="log" class="container">
         <h2>Battle Log</h2>
-        <ul></ul>
+        <ul>
+          <li v-for="message in logMessages">
+            <span
+              :class="{'log--player': message.actionBy === 'The Player', 'log--monster': message.actionBy === 'The Beast'}"
+              >{{ message.actionBy === 'The Player' ? 'The player' : "The beast"
+              }}
+            </span>
+            <span v-if="message.actionType === 'healed'">
+              has healed himself for
+              <span class="log--heal">{{message.actionValue}}</span></span
+            >
+            <span v-else>
+              dealt
+              <span class="log--damage">{{message.actionValue}}</span>
+              damage</span
+            >
+          </li>
+        </ul>
       </section>
     </div>
   </body>

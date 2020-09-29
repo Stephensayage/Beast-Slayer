@@ -39,6 +39,11 @@ section {
   height: 100%;
 }
 
+.user-img {
+  width: 15%;
+  height: 20%;
+}
+
 .container {
   text-align: center;
   padding: 0.5rem;
@@ -103,11 +108,11 @@ button:disabled {
 }
 
 .log--player {
-  color: #7700ff;
+  color: #8a39e8;
 }
 
 .log--monster {
-  color: #da8d00;
+  color: #feb835;
 }
 
 .log--damage {
