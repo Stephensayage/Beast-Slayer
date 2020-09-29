@@ -10,7 +10,24 @@ const app = Vue.createApp({
       currentRound: 0,
       specialCooldown: 0,
       healCoolDown: 0,
+      winner: null,
     };
+  },
+  watch: {
+    playerHealth(value) {
+      if (value <= 0 && this.beastHealth <= 0) {
+        this.winner = "draw";
+      } else if (value <= 0) {
+        this.winner = "beast";
+      }
+    },
+    beastHealth(value) {
+      if (value <= 0 && this.playerHealth <= 0) {
+        this.winner = "draw";
+      } else if (value <= 0) {
+        this.winner = "player";
+      }
+    },
   },
   computed: {
     beastBarStyles() {
@@ -54,7 +71,22 @@ const app = Vue.createApp({
       this.currentRound++;
       this.healCoolDown = 2;
       const healValue = getRandomValue(4, 8);
-      this.playerHealth += healValue;
+      if (this.playerHealth === 100) {
+        this.playerHealth = 100;
+      } else {
+        this.playerHealth += healValue;
+      }
+    },
+    surrender() {
+      this.currentRound = 0;
+      this.healCoolDown = 0;
+      this.specialCooldown = 0;
+      this.playerHealth = 100;
+      this.beastHealth = 100;
+    },
+    playAgain() {
+      this.winner = null;
+      this.surrender();
     },
   },
 });
