@@ -6,9 +6,6 @@ const beastImgs = [
   "https://www.flaticon.com/svg/static/icons/svg/2463/2463666.svg",
   "https://www.flaticon.com/svg/static/icons/svg/2463/2463611.svg",
 ];
-// function randomBeast(beastImgs) {
-//   return beastImgs[Math.floor(Math.random() * beastImgs.length)];
-// }
 
 const app = Vue.createApp({
   data() {
